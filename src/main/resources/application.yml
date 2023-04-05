@@ -21,7 +21,7 @@ spring:
                         driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
                         isClustered: true
                     scheduler:
-                        instanceId: instance_1
+                        instanceId: AUTO
                         instanceName: demo-scheduler
                     threadPool:
                         class: org.quartz.simpl.SimpleThreadPool

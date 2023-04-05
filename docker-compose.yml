@@ -31,11 +31,25 @@ services:
       - demo-network
     restart: unless-stopped
 
+  quartz-demo-service:
+    image: abhijitk7/quartz:quartz-demo-service
+    ports:
+      - 8084
+    environment:
+      JAVA_OPTS: >
+        -DPG_HOST=postgres
+    volumes:
+      - quartz-demo-service:/data/db
+    restart: always
+    depends_on:
+      - postgres
+    networks:
+      - demo-network
 
 volumes:
   postgres:
   pgadmin:
-  demo_service_data:
+  quartz-demo-service:
 
 # Networks to be created to facilitate communication between containers
 networks:
