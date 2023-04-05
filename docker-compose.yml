@@ -31,18 +31,6 @@ services:
       - demo-network
     restart: unless-stopped
 
-  demo-service:
-    image: abhijitk7/tourist-management:demo-service
-    ports:
-      - 8010:8010
-    restart: always
-    volumes:
-      - demo_service_data:/data/db
-    networks:
-      - demo-network
-    depends_on:
-      - postgres
-
 
 volumes:
   postgres:

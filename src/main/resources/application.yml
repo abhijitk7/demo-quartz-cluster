@@ -1,0 +1,28 @@
+server:
+    port: ${PORT:0}
+spring:
+    datasource:
+        password: password
+        pool-size: 10
+        url: jdbc:postgresql://${PG_HOST:localhost}:5432/quartz_demo?createDatabaseIfNotExist=true
+        username: user
+    jpa:
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+    quartz:
+        jdbc:
+            initialize-schema: never
+        job-store-type: jdbc
+        properties:
+            org:
+                quartz:
+                    jobStore:
+                        class: org.springframework.scheduling.quartz.LocalDataSourceJobStore
+                        dataSource: spring.datasource
+                        driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+                        isClustered: true
+                    scheduler:
+                        instanceId: instance_1
+                        instanceName: demo-scheduler
+                    threadPool:
+                        class: org.quartz.simpl.SimpleThreadPool
+                        threadCount: 5
